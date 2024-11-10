@@ -22,6 +22,7 @@ export default function TabNavigator() {
 
           return <Ionicons name={iconName} size={size} color={color} />;
         },
+        ...tabBarOptions, // Aplica as opções de estilo do tabBar
       })}
     >
       <Tab.Screen name="Home" component={HomeScreen} />
@@ -31,3 +32,24 @@ export default function TabNavigator() {
     </Tab.Navigator>
   );
 }
+
+const tabBarOptions = {
+  tabBarStyle: {
+    backgroundColor: '#f8f8f8',
+    paddingBottom: 3,
+    paddingTop: 6,
+    height: 80, 
+
+    elevation: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 5 },
+    shadowOpacity: 0.3,
+    shadowRadius: 10,
+  },
+  tabBarActiveTintColor: '#268596',
+  tabBarInactiveTintColor: '#828282',
+  tabBarLabelStyle: {
+    fontSize: 12,
+    fontWeight: '600',
+  },
+};
