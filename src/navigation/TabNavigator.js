@@ -22,7 +22,7 @@ export default function TabNavigator() {
 
           return <Ionicons name={iconName} size={size} color={color} />;
         },
-        ...tabBarOptions, // Aplica as opções de estilo do tabBar
+        ...tabBarOptions,
       })}
     >
       <Tab.Screen name="Home" component={HomeScreen} />
