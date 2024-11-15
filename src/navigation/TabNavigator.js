@@ -22,6 +22,7 @@ export default function TabNavigator() {
 
           return <Ionicons name={iconName} size={size} color={color} />;
         },
+        headerShown: false,
         ...tabBarOptions,
       })}
     >
@@ -35,7 +36,7 @@ export default function TabNavigator() {
 
 const tabBarOptions = {
   tabBarStyle: {
-    backgroundColor: '#f8f8f8',
+    backgroundColor: '#ffffff',
     paddingBottom: 3,
     paddingTop: 6,
     height: 80, 
