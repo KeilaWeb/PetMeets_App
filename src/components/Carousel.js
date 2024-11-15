@@ -5,7 +5,6 @@ const Carousel = ({ cards }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const scrollRef = useRef(null);
   const { width } = Dimensions.get('window');
-  const cardHeight = 200;
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -86,7 +85,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     lineHeight: 20, 
     flexWrap: 'wrap',
-    overflow: 'hidden', // Garante que o texto não ultrapasse os limites
+    overflow: 'hidden',
   },
   paginationContainer: {
     flexDirection: 'row',

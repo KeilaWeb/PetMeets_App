@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, ScrollView, StyleSheet, TextInput, Image } from 'react-native';
 import Carousel from '../components/Carousel';
 import ClinicCard from '../components/ClinicCard';
-import ClinicCardH from '../components/ClinicCard_h';
+import ServiceMenu from '../components/ServiceMenu';
 
 export default function HomeScreen() {
   const cards = [
@@ -35,7 +35,6 @@ export default function HomeScreen() {
 
       <TextInput style={styles.searchInput} placeholder="Pesquisar clínicas" />
 
-      {/* Carrossel vertical */}
       <Carousel cards={cards} />
 
       <View style={styles.section}>
@@ -50,11 +49,11 @@ export default function HomeScreen() {
 
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Todos</Text>
-        <ClinicCardH name="Clínica C" address="Rua X, Cidade Y" />
-        <ClinicCardH name="Clínica D" address="Rua Y, Cidade Z" />
-        <ClinicCardH name="Clínica D" address="Rua Y, Cidade W" />
-        <ClinicCardH name="Clínica D" address="Rua Y, Cidade X" />
-        <ClinicCardH name="Clínica D" address="Rua Y, Cidade H" />
+        <ServiceMenu name="Clínica C" address="Rua X, Cidade Y" />
+        <ServiceMenu name="Clínica D" address="Rua Y, Cidade Z" />
+        <ServiceMenu name="Clínica D" address="Rua Y, Cidade W" />
+        <ServiceMenu name="Clínica D" address="Rua Y, Cidade X" />
+        <ServiceMenu name="Clínica D" address="Rua Y, Cidade H" />
       </View>
     </ScrollView>
   );
@@ -67,7 +66,7 @@ const styles = StyleSheet.create({
   avatar: { width: 40, height: 40, borderRadius: 20, marginEnd: 20 },
   greeting: { fontSize: 28 },
   headerIcons: { flexDirection: 'row', alignItems: 'center' },
-  searchInput: { marginTop: 30, marginBottom: 30, padding: 8, backgroundColor: '#f0f0f0', borderRadius: 8 },
+  searchInput: { marginTop: 20, marginBottom: 20, padding: 8, backgroundColor: '#f0f0f0', borderRadius: 8 },
   section: { marginVertical: 15 },
   sectionTitle: { fontSize: 18, fontWeight: 'bold' },
 });
