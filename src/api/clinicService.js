@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = 'http://localhost:3000'; // Atualize para o IP local ou domínio, se necessário
+const BASE_URL = 'http://localhost:3000';
 
 export const getClinics = async () => {
   try {
