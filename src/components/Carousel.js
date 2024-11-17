@@ -9,14 +9,14 @@ const Carousel = ({ cards }) => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % cards.length);
-    }, 7000); 
+    }, 7000);
 
     return () => clearInterval(interval);
   }, [cards.length]);
 
   useEffect(() => {
     if (scrollRef.current) {
-        scrollRef.current.scrollTo({ x: width * currentIndex, animated: true });
+      scrollRef.current.scrollTo({ x: width * currentIndex, animated: true });
     }
   }, [currentIndex, width]);
 
@@ -31,7 +31,7 @@ const Carousel = ({ cards }) => {
       >
         {cards.map((card, index) => (
           <View key={index} style={styles.card}>
-            <Image source={{ uri: card.image }} style={styles.image} />
+            <Image source={card.image} style={styles.image} />
             <View style={styles.textContainer}>
               <Text style={styles.text}>{card.text}</Text>
             </View>
@@ -44,10 +44,7 @@ const Carousel = ({ cards }) => {
         {cards.map((_, index) => (
           <View
             key={index}
-            style={[
-              styles.paginationDot,
-              currentIndex === index && styles.activeDot,
-            ]}
+            style={[styles.paginationDot, currentIndex === index && styles.activeDot]}
           />
         ))}
       </View>
@@ -58,7 +55,7 @@ const Carousel = ({ cards }) => {
 const styles = StyleSheet.create({
   card: {
     width: Dimensions.get('window').width - 36,
-    height: 180, 
+    height: 180,
     borderRadius: 10,
     overflow: 'hidden',
     marginBottom: 10,
@@ -81,11 +78,9 @@ const styles = StyleSheet.create({
   },
   text: {
     color: '#fff',
-    fontSize: 14, 
+    fontSize: 14,
     fontWeight: 'bold',
-    lineHeight: 20, 
-    flexWrap: 'wrap',
-    overflow: 'hidden',
+    lineHeight: 20,
   },
   paginationContainer: {
     flexDirection: 'row',
