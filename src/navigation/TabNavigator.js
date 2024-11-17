@@ -1,4 +1,5 @@
 import React from 'react';
+import { View, StyleSheet } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -13,17 +14,28 @@ export default function TabNavigator() {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
-        tabBarIcon: ({ color, size }) => {
+        tabBarIcon: ({ focused, color, size }) => {
           let iconName;
           if (route.name === 'Home') iconName = 'home';
           else if (route.name === 'Agendamento') iconName = 'today';
           else if (route.name === 'Pesquisa') iconName = 'search';
           else if (route.name === 'Perfil') iconName = 'person';
 
-          return <Ionicons name={iconName} size={size} color={color} />;
+          return (
+            <View
+              style={[
+                styles.iconContainer,
+                focused && styles.activeContainer,
+              ]}
+            >
+              <Ionicons name={iconName} size={size} color={color} />
+            </View>
+          );
         },
-        headerShown: false,
-        ...tabBarOptions,
+        tabBarActiveTintColor: '#FFFFFF',
+        tabBarInactiveTintColor: '#496783',
+        tabBarStyle: styles.tabBarStyle,
+        tabBarLabelStyle: styles.tabBarLabelStyle,
       })}
     >
       <Tab.Screen name="Home" component={HomeScreen} />
@@ -34,23 +46,38 @@ export default function TabNavigator() {
   );
 }
 
-const tabBarOptions = {
+const styles = StyleSheet.create({
   tabBarStyle: {
-    backgroundColor: '#ffffff',
-    paddingBottom: 3,
-    paddingTop: 6,
-    height: 80, 
-
+    backgroundColor: '#F6F6F6',
+    position: 'absolute',
+    bottom: 8,
+    left: 8,
+    right: 8,
+    height: 70,
+    borderRadius: 40,
     elevation: 10,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 5 },
-    shadowOpacity: 0.3,
-    shadowRadius: 10,
+    shadowColor: '#29374E',
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.4,
+    shadowRadius: 18,
   },
-  tabBarActiveTintColor: '#268596',
-  tabBarInactiveTintColor: '#828282',
   tabBarLabelStyle: {
-    fontSize: 12,
-    fontWeight: '600',
+    fontSize: 11,
+    fontWeight: '500',
+    paddingHorizontal: 10,
   },
-};
+  iconContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingVertical: 14,
+    paddingHorizontal: 30,
+    backgroundColor: 'transparent', 
+  },
+  activeContainer: {
+    backgroundColor: '#268596',
+    borderRadius: 14,
+    borderTopLeftRadius: 40, 
+    borderTopEndRadius: 40,
+    paddingBottom: 30,
+  },
+});
