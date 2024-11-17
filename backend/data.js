@@ -1,12 +1,12 @@
 const clinics = [
-  { id: 1, clinic: "Clínica Animal Saúde", address: "Rua das Flores, 123 - Centro", "logo": "/assets/clinic_logo/clinic1.png" },
-  { id: 2, clinic: "Pet Cuidado", address: "Av. Paulista, 500 - São Paulo", "logo": "/assets/clinic_logo/clinic2.png" },
-  { id: 3, clinic: "Vida Animal", address: "Rua Rio Grande, 45 - Moema", "logo": "/assets/clinic_logo/clinic3.png" },
-  { id: 4, clinic: "Clínica Veterinária Bem-Estar", address: "Rua Boa Vista, 89 - Salvador", "logo": "/assets/clinic_logo/clinic4.png" },
-  { id: 5, clinic: "Centro Animal", address: "Av. Atlântica, 700 - Rio de Janeiro", "logo": "/assets/clinic_logo/clinic5.png" },
-  { id: 6, clinic: "VetCare", address: "Rua do Comércio, 102 - Belo Horizonte", "logo": "/assets/clinic_logo/clinic6.png" },
-  { id: 7, clinic: "Pet Vida", address: "Av. Getúlio Vargas, 301 - Curitiba", "logo": "/assets/clinic_logo/clinic7.png" },
-  { id: 8, clinic: "Animed", address: "Rua dos Veteranos, 54 - Porto Alegre", "logo": "/assets/clinic_logo/clinic8.png" },
+  { id: 1, clinic: "Animal Saúde", address: "Rua das Flores, 123 - Centro", "logo": "/assets/clinic_logo/clinic9.png", "alt":"Logo da Clínica" },
+  { id: 2, clinic: "Pet Cuidado", address: "Av. Paulista, 500 - São Paulo", "logo": "/assets/clinic_logo/clinic2.png", "alt":"Logo da Clínica" },
+  { id: 3, clinic: "Vida Animal", address: "Rua Rio Grande, 45 - Moema", "logo": "/assets/clinic_logo/clinic3.png", "alt":"Logo da Clínica" },
+  { id: 4, clinic: "Clínica Veterinária Bem-Estar", address: "Rua Boa Vista, 89 - Salvador", "logo": "/assets/clinic_logo/clinic4.png", "alt":"Logo da Clínica" },
+  { id: 5, clinic: "Centro Animal", address: "Av. Atlântica, 700 - Rio de Janeiro", "logo": "/assets/clinic_logo/clinic5.png", "alt":"Logo da Clínica" },
+  { id: 6, clinic: "VetCare", address: "Rua do Comércio, 102 - Belo Horizonte", "logo": "/assets/clinic_logo/clinic6.png", "alt":"Logo da Clínica" },
+  { id: 7, clinic: "Pet Vida", address: "Av. Getúlio Vargas, 301 - Curitiba", "logo": "/assets/clinic_logo/clinic7.png", "alt":"Logo da Clínica" },
+  { id: 8, clinic: "Animed", address: "Rua dos Veteranos, 54 - Porto Alegre", "logo": "/assets/clinic_logo/clinic8.png", "alt":"Logo da Clínica" },
 ];
 
 const doctors = [

@@ -1,11 +1,12 @@
 const express = require('express');
 const cors = require('cors');
-const { clinics, doctors, doctorClinicRelations } = require('./data'); // Atualizando a importação para os novos dados
+const { clinics, doctors, doctorClinicRelations } = require('./data'); 
 const app = express();
+const path = require('path');
 
 app.use(cors());
 app.use(express.json());
-app.use('/assets', express.static('assets'));
+app.use('/assets', express.static(path.join(__dirname, 'assets')));
 
 // Rotas para Clínicas
 app.get('/clinics', (req, res) => res.json(clinics));

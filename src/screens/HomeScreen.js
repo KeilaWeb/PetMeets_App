@@ -1,10 +1,31 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, ScrollView, StyleSheet, TextInput, Image } from 'react-native';
+import axios from 'axios';
 import Carousel from '../components/Carousel';
 import ClinicCard from '../components/ClinicCard';
 import ServiceMenu from '../components/ServiceMenu';
+import { getClinics } from '../api/clinicService';
 
 export default function HomeScreen() {
+  const [clinics, setClinics] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  // Função para carregar as clínicas
+  useEffect(() => {
+    const fetchClinics = async () => {
+      try {
+        const clinicsData = await getClinics();
+        setClinics(clinicsData);  // Armazena as clínicas no estado
+      } catch (error) {
+        console.error('Erro ao carregar clínicas:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchClinics();
+  }, []);
+
   const cards = [
     {
       image: 'https://via.placeholder.com/400',
@@ -19,6 +40,14 @@ export default function HomeScreen() {
       text: 'Ofertas exclusivas para nossos usuários.',
     },
   ];
+
+  if (loading) {
+    return (
+      <View style={styles.container}>
+        <Text>Carregando...</Text>
+      </View>
+    );
+  }
 
   return (
     <ScrollView style={styles.container}>
@@ -40,20 +69,27 @@ export default function HomeScreen() {
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Mais próximos a você</Text>
         <ScrollView horizontal>
-          <ClinicCard name="Clínica A" />
-          <ClinicCard name="Clínica B" />
-          <ClinicCard name="Clínica C" />
-          <ClinicCard name="Clínica D" />
+          {/* Renderiza o ClinicCard para cada clínica */}
+          {clinics.map((clinic) => (
+            <ClinicCard
+              key={clinic.id}
+              name={clinic.clinic}
+              logo={clinic.logo}
+            />
+          ))}
         </ScrollView>
       </View>
 
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Todos</Text>
-        <ServiceMenu name="Clínica C" address="Rua X, Cidade Y" />
-        <ServiceMenu name="Clínica D" address="Rua Y, Cidade Z" />
-        <ServiceMenu name="Clínica D" address="Rua Y, Cidade W" />
-        <ServiceMenu name="Clínica D" address="Rua Y, Cidade X" />
-        <ServiceMenu name="Clínica D" address="Rua Y, Cidade H" />
+        {/* Renderiza o ServiceMenu para cada clínica */}
+        {clinics.map((clinic) => (
+          <ServiceMenu
+            key={clinic.id}
+            name={clinic.clinic}
+            address={clinic.address}
+          />
+        ))}
       </View>
     </ScrollView>
   );
