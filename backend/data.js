@@ -1,131 +1,59 @@
-// Dados simulados (simula um banco de dados)
 const clinics = [
-    {
-      "id": 1,
-      "clinic_name": "Clínica Animal Saúde",
-      "specialist_name": "Dra. Ana Lima",
-      "address": "Rua das Flores, 123 - Centro",
-      "doctor_name": "Dr. Roberto Oliveira",
-      "specialty": "Ortopedia",
-      "logo": "https://example.com/logos/clinic1.png"
-    },
-    {
-      "id": 2,
-      "clinic_name": "Pet Cuidado",
-      "specialist_name": "Dr. Felipe Souza",
-      "address": "Av. Paulista, 500 - São Paulo",
-      "doctor_name": "Dra. Juliana Mendes",
-      "specialty": "Cardiologia",
-      "logo": "https://example.com/logos/clinic2.png"
-    },
-    {
-      "id": 3,
-      "clinic_name": "Vida Animal",
-      "specialist_name": "Dra. Camila Gonçalves",
-      "address": "Rua Rio Grande, 45 - Moema",
-      "doctor_name": "Dr. João Pedro",
-      "specialty": "Dermatologia",
-      "logo": "https://example.com/logos/clinic3.png"
-    },
-    {
-      "id": 4,
-      "clinic_name": "Clínica Veterinária Bem-Estar",
-      "specialist_name": "Dr. Rodrigo Moreira",
-      "address": "Rua Boa Vista, 89 - Salvador",
-      "doctor_name": "Dra. Mariana Silva",
-      "specialty": "Oftalmologia",
-      "logo": "https://example.com/logos/clinic4.png"
-    },
-    {
-      "id": 5,
-      "clinic_name": "Centro Animal",
-      "specialist_name": "Dra. Paula Almeida",
-      "address": "Av. Atlântica, 700 - Rio de Janeiro",
-      "doctor_name": "Dr. Carlos Mendes",
-      "specialty": "Cirurgia Geral",
-      "logo": "https://example.com/logos/clinic5.png"
-    },
-    {
-      "id": 6,
-      "clinic_name": "VetCare",
-      "specialist_name": "Dr. Bruno Santos",
-      "address": "Rua do Comércio, 102 - Belo Horizonte",
-      "doctor_name": "Dra. Tatiana Souza",
-      "specialty": "Neurologia",
-      "logo": "https://example.com/logos/clinic6.png"
-    },
-    {
-      "id": 7,
-      "clinic_name": "Pet Vida",
-      "specialist_name": "Dra. Carla Ramos",
-      "address": "Av. Getúlio Vargas, 301 - Curitiba",
-      "doctor_name": "Dr. Marcos Lima",
-      "specialty": "Endocrinologia",
-      "logo": "https://example.com/logos/clinic7.png"
-    },
-    {
-      "id": 8,
-      "clinic_name": "Animed",
-      "specialist_name": "Dr. Fernando Lopes",
-      "address": "Rua dos Veteranos, 54 - Porto Alegre",
-      "doctor_name": "Dra. Gabriela Mendes",
-      "specialty": "Oncologia",
-      "logo": "https://example.com/logos/clinic8.png"
-    },
-    {
-      "id": 9,
-      "clinic_name": "PetLife",
-      "specialist_name": "Dra. Fernanda Carvalho",
-      "address": "Av. Brasil, 785 - Fortaleza",
-      "doctor_name": "Dr. Igor Lima",
-      "specialty": "Urologia",
-      "logo": "https://example.com/logos/clinic11.png"
-    },
-    {
-      "id": 10,
-      "clinic_name": "Bem-estar Animal",
-      "specialist_name": "Dra. Joana Costa",
-      "address": "Av. das Américas, 1230 - Rio de Janeiro",
-      "doctor_name": "Dr. Pedro Henrique",
-      "specialty": "Geriatria",
-      "logo": "https://example.com/logos/clinic13.png"
-    },
-    {
-      "id": 11,
-      "clinic_name": "SOS Pet",
-      "specialist_name": "Dr. Lucas Santana",
-      "address": "Rua da Paz, 214 - São Luís",
-      "doctor_name": "Dra. Renata Medeiros",
-      "specialty": "Exóticos",
-      "logo": "https://example.com/logos/clinic14.png"
-    },
-    {
-      "id": 12,
-      "clinic_name": "PetCare Pro",
-      "specialist_name": "Dr. Leonardo Azevedo",
-      "address": "Rua Sul, 89 - João Pessoa",
-      "doctor_name": "Dra. Alessandra Moraes",
-      "specialty": "Dermatologia",
-      "logo": "https://example.com/logos/clinic16.png"
-    },
-    {
-      "id": 13,
-      "clinic_name": "VetPrime",
-      "specialist_name": "Dra. Marcela Cruz",
-      "address": "Av. Central, 452 - Manaus",
-      "doctor_name": "Dr. Henrique Almeida",
-      "specialty": "Cirurgia Cardíaca",
-      "logo": "https://example.com/logos/clinic17.png"
-    },
-    {
-      "id": 14,
-      "clinic_name": "Animal Saúde+",
-      "specialist_name": "Dr. Gustavo Andrade",
-      "address": "Rua da Esperança, 77 - Campo Grande",
-      "doctor_name": "Dra. Paula Lopes",
-      "specialty": "Infectologia",
-      "logo": "https://example.com/logos/clinic18.png"
-    },     
+  { id: 1, clinic: "Clínica Animal Saúde", address: "Rua das Flores, 123 - Centro" },
+  { id: 2, clinic: "Pet Cuidado", address: "Av. Paulista, 500 - São Paulo" },
+  { id: 3, clinic: "Vida Animal", address: "Rua Rio Grande, 45 - Moema" },
+  { id: 4, clinic: "Clínica Veterinária Bem-Estar", address: "Rua Boa Vista, 89 - Salvador" },
+  { id: 5, clinic: "Centro Animal", address: "Av. Atlântica, 700 - Rio de Janeiro" },
+  { id: 6, clinic: "VetCare", address: "Rua do Comércio, 102 - Belo Horizonte" },
+  { id: 7, clinic: "Pet Vida", address: "Av. Getúlio Vargas, 301 - Curitiba" },
+  { id: 8, clinic: "Animed", address: "Rua dos Veteranos, 54 - Porto Alegre" },
 ];
 
-module.exports = clinics;
+const doctors = [
+  { id: 1, name: "Dr. Roberto Oliveira", specialty: "Clínico Geral" },
+  { id: 2, name: "Dra. Juliana Mendes", specialty: "Ortopedia" },
+  { id: 3, name: "Dr. João Pedro", specialty: "Cardiologia" },
+  { id: 4, name: "Dra. Mariana Silva", specialty: "Dermatologia" },
+  { id: 5, name: "Dr. Carlos Mendes", specialty: "Neurologia" },
+  { id: 6, name: "Dra. Tatiana Souza", specialty: "Cirurgia Geral" },
+  { id: 7, name: "Dr. Marcos Lima", specialty: "Endocrinologia" },
+  { id: 8, name: "Dr. Igor Lima", specialty: "Geriatria" },
+  { id: 9, name: "Dr. Henrique Almeida", specialty: "Clínico Geral" },
+  { id: 10, name: "Dra. Gabriela Mendes", specialty: "Clínico Geral" },
+  { id: 11, name: "Dr. Pedro Henrique", specialty: "Cirurgia Cardíaca" },
+  { id: 12, name: "Dra. Renata Medeiros", specialty: "Urologia" },
+  { id: 13, name: "Dr. Igor Oliveira", specialty: "Clínico Geral" },
+  { id: 14, name: "Dr. Paulo Costa", specialty: "Infectologia" },
+];
+
+// Relacionamento entre médicos e clínicas
+const doctorClinicRelations = [
+  // Clínicos gerais
+  { doctorId: 1, clinicId: 1 },
+  { doctorId: 1, clinicId: 2 },
+  { doctorId: 1, clinicId: 3 },
+  { doctorId: 1, clinicId: 4 },
+  { doctorId: 1, clinicId: 5 },
+  { doctorId: 13, clinicId: 2 },
+  { doctorId: 13, clinicId: 3 },
+  { doctorId: 13, clinicId: 7 },
+
+  // Especialistas
+  { doctorId: 2, clinicId: 1 },
+  { doctorId: 2, clinicId: 5 },
+  { doctorId: 3, clinicId: 4 },
+  { doctorId: 3, clinicId: 6 },
+  { doctorId: 4, clinicId: 5 },
+  { doctorId: 4, clinicId: 7 },
+  { doctorId: 5, clinicId: 8 },
+  { doctorId: 6, clinicId: 6 },
+  { doctorId: 7, clinicId: 7 },
+  { doctorId: 8, clinicId: 2 },
+  { doctorId: 9, clinicId: 8 },
+  { doctorId: 10, clinicId: 3 },
+  { doctorId: 11, clinicId: 4 },
+  { doctorId: 12, clinicId: 6 },
+  { doctorId: 14, clinicId: 1 },
+];
+
+module.exports = { clinics, doctors, doctorClinicRelations };
