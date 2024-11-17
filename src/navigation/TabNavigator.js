@@ -6,7 +6,7 @@ import { Ionicons } from '@expo/vector-icons';
 import HomeScreen from '../screens/HomeScreen';
 import ScheduleScreen from '../screens/ScheduleScreen';
 import SearchScreen from '../screens/SearchScreen';
-import ProfileScreen from '../screens/ProfileScreen';
+import ProfileScreen from '../screens/ClinicDetailsScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -32,6 +32,7 @@ export default function TabNavigator() {
             </View>
           );
         },
+        headerShown: false,
         tabBarActiveTintColor: '#FFFFFF',
         tabBarInactiveTintColor: '#496783',
         tabBarStyle: styles.tabBarStyle,
