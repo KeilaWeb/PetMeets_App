@@ -49,9 +49,9 @@ export default function HomeScreen() {
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Mais próximos a você</Text>
         {loading ? (
-          <ActivityIndicator size="large" color="#0000ff" />
+          <ActivityIndicator size="large" color="#29374E" />
         ) : (
-          <ScrollView horizontal>
+          <ScrollView horizontal style={styles.scrollCard}>
             {clinics.map((clinic) => (
               <ClinicCard key={clinic.id} name={clinic.clinic} logo={clinic.logo} />
             ))}
@@ -63,10 +63,10 @@ export default function HomeScreen() {
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Todos</Text>
         {loading ? (
-          <ActivityIndicator size="large" color="#0000ff" />
+          <ActivityIndicator size="large" color="#29374E" />
         ) : (
           clinics.map((clinic) => (
-            <ServiceMenu key={clinic.id} name={clinic.clinic} address={clinic.address} />
+            <ServiceMenu key={clinic.id} logo={clinic.logo} name={clinic.clinic} address={clinic.address} />
           ))
         )}
       </View>
@@ -76,12 +76,13 @@ export default function HomeScreen() {
 
 const styles = StyleSheet.create({
   container: { flex: 1, padding: 18, backgroundColor: '#ffffff' },
+  scrollCard: {overflow: 'hidden'},
   header: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 20 },
   icon: { width: 30, height: 30, margin: 10 },
   avatar: { width: 40, height: 40, borderRadius: 20, marginEnd: 20 },
-  greeting: { fontSize: 28, fontWeight: '600' },
+  greeting: { fontSize: 24, fontWeight: '600', color: '#29374E', },
   headerIcons: { flexDirection: 'row', alignItems: 'center' },
-  searchInput: { padding: 10, backgroundColor: '#f0f0f0', borderRadius: 8, marginBottom: 20 },
-  section: { marginVertical: 15 },
-  sectionTitle: { fontSize: 18, fontWeight: 'bold', marginBottom: 10 },
+  searchInput: { padding: 10, backgroundColor: '#f0f0f0', borderRadius: 8, marginBottom: 20, color: '#29374E', },
+  section: { marginVertical: 15, overflow: 'hidden', },
+  sectionTitle: { fontSize: 18, fontWeight: 'bold', marginBottom: 10, color: '#29374E', },
 });
