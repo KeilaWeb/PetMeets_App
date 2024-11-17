@@ -5,6 +5,7 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
+app.use('/assets', express.static('assets'));
 
 // Rotas para Clínicas
 app.get('/clinics', (req, res) => res.json(clinics));
