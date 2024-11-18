@@ -76,13 +76,13 @@ export default function HomeScreen() {
 
 const styles = StyleSheet.create({
   container: { flex: 1, padding: 18, backgroundColor: '#ffffff' },
-  scrollCard: {overflow: 'hidden'},
   header: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 20 },
   icon: { width: 30, height: 30, margin: 10, color: '#29374E', },
   avatar: { width: 40, height: 40, borderRadius: 20, marginEnd: 20 },
   greeting: { fontSize: 24, fontWeight: '600', color: '#29374E', },
   headerIcons: { flexDirection: 'row', alignItems: 'center' },
   searchInput: { padding: 10, backgroundColor: '#f0f0f0', borderRadius: 8, marginBottom: 20, color: '#29374E', },
-  section: { marginVertical: 15, overflow: 'hidden', },
+  section: { marginVertical: 15 },
   sectionTitle: { fontSize: 18, fontWeight: 'bold', marginBottom: 10, color: '#29374E', },
+  scrollCard: { overflowX: 'hiden' }
 });
