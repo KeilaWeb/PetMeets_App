@@ -1,16 +1,16 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 
-export default function ClinicCard({ name, logo }) {
+export default function ClinicCard({ name, logo, onPress  }) {
   return (
-    <View style={styles.card}>
+    <TouchableOpacity style={styles.card} onPress={onPress}>
       <View style={styles.logoContainer}>
         <Image source={{ uri: logo }} style={styles.logo} />
       </View>
       <View>
         <Text style={styles.name}>{name}</Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 }
 
@@ -18,22 +18,20 @@ const styles = StyleSheet.create({
   card: {
     flexDirection: 'column',
     alignItems: 'center',
-    marginVertical: 8,
-    padding: 12,
-    backgroundColor: '#fff',
+    marginVertical: 6,
+    paddingHorizontal: 12,
+    paddingVertical: 6,
     borderRadius: 20,
-    marginRight: 14,
+    marginRight: 10,
     overflow: 'hidden',
     maxWidth: 140,
   },
   logoContainer: {
-    width: 90,
-    height: 90,
-    backgroundColor: '#F6F6F6',
+    width: 80,
+    height: 80,
     borderRadius: 45, 
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 12,
   },
   logo: {
     width: 70,
@@ -41,12 +39,12 @@ const styles = StyleSheet.create({
     borderRadius: 40,
   },
   name: {
-    fontSize: 14,
+    fontSize: 12,
     color: '#29374E',
     fontWeight: '600',
     textAlign: 'center', 
     flexWrap: 'wrap',
     maxWidth: 120,
-    marginTop: 8,
+    marginTop: 4,
   },
 });

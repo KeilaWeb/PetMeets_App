@@ -15,7 +15,6 @@ export default function ClinicDetailsScreen({ route }) {
       </View>
       <View style={styles.content}>
         <Text>Detalhes da clínica virão aqui...</Text>
-        {/* Aqui implementaremos os links e conteúdo nas próximas etapas */}
       </View>
     </View>
   );

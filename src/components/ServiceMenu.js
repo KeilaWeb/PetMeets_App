@@ -1,9 +1,9 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 
-export default function ServiceMenu({ logo, name, address }) {
+export default function ServiceMenu({ logo, name, address, onPress }) {
   return (
-    <View style={styles.card}>
+    <TouchableOpacity style={styles.card} onPress={onPress}>
       <View style={styles.logoContainer}>
         <Image source={{ uri: logo }} style={styles.logo} />
       </View>
@@ -11,30 +11,27 @@ export default function ServiceMenu({ logo, name, address }) {
         <Text style={styles.name}>{name}</Text>
         {address && <Text style={styles.address}>{address}</Text>}
       </View>
-    </View>
+    </TouchableOpacity>
   );
 }
 
 const styles = StyleSheet.create({
   card: { 
     flexDirection: 'row', 
-    alignItems: 'center', 
-    marginVertical: 8, 
-    padding: 12, 
-    backgroundColor: '#fff', 
+    alignItems: 'center',
+    backgroundColor: '#F6F6F6', 
+    marginVertical: 6, 
+    padding: 10, 
     borderRadius: 20, 
-    marginRight: 14,
     overflow: 'hidden', 
   },
   logoContainer: {
-    width: 70,
-    height: 70,
+    width: 60,
+    height: 60,
     backgroundColor: '#F6F6F6',
     borderRadius: 45, 
     justifyContent: 'center',
-    alignItems: 'center',
-    padding: 12,
-    
+    alignItems: 'center',   
     position: 'relative',
     marginRight: 10 
   },
@@ -49,5 +46,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold' 
   },
   address: { 
-    color: '#29374E' },
+    color: '#29374E',
+    fontSize: 12, 
+  },
 });
