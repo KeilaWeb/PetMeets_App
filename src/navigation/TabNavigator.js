@@ -51,11 +51,9 @@ const styles = StyleSheet.create({
   tabBarStyle: {
     backgroundColor: '#F6F6F6',
     position: 'absolute',
-    bottom: 8,
-    left: 8,
-    right: 8,
     height: 70,
-    borderRadius: 40,
+    borderTopEndRadius: 30,
+    borderTopLeftRadius: 30,
     elevation: 10,
     shadowColor: '#29374E',
     shadowOffset: { width: 0, height: 3 },
@@ -70,15 +68,15 @@ const styles = StyleSheet.create({
   iconContainer: {
     justifyContent: 'center',
     alignItems: 'center',
-    paddingVertical: 14,
-    paddingHorizontal: 30,
+    paddingVertical: 20,
+    paddingHorizontal: 28,
     backgroundColor: 'transparent',
   },
   activeContainer: {
     backgroundColor: '#268596',
-    borderRadius: 14,
+    borderRadius: 10,
     borderTopLeftRadius: 40,
     borderTopEndRadius: 40,
-    paddingBottom: 30,
+    paddingBottom: 20,
   },
 });
