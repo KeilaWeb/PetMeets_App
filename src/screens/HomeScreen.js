@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
   greeting: { fontSize: 24, fontWeight: '600', color: '#29374E', },
   headerIcons: { flexDirection: 'row', alignItems: 'center' },
   searchInput: { padding: 10, backgroundColor: '#f0f0f0', borderRadius: 8, marginBottom: 20, color: '#29374E', },
-  section: { marginVertical: 15 },
-  sectionTitle: { fontSize: 18, fontWeight: 'bold', marginBottom: 10, color: '#29374E', },
+  section: { marginVertical: 10 },
+  sectionTitle: { fontSize: 18, fontWeight: 'bold', marginBottom: 0, color: '#29374E', },
   scrollCard: { overflowX: 'hiden' }
 });
