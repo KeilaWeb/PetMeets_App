@@ -6,6 +6,7 @@ import { Ionicons } from '@expo/vector-icons';
 import HomeScreen from '../screens/HomeScreen';
 import ScheduleScreen from '../screens/ScheduleScreen';
 import SearchScreen from '../screens/SearchScreen';
+import ProfileScreen from '../screens/ProfileScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -22,11 +23,7 @@ export default function TabNavigator() {
 
           return (
             <View
-              style={[
-                styles.iconContainer,
-                focused && styles.activeContainer,
-              ]}
-            >
+              style={[ styles.iconContainer, focused && styles.activeContainer, ]} >
               <Ionicons name={iconName} size={size} color={color} />
             </View>
           );
@@ -40,7 +37,8 @@ export default function TabNavigator() {
     >
       <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen name="Agendamento" component={ScheduleScreen} />
-      <Tab.Screen name="Pesquisa" component={SearchScreen} />
+      <Tab.Screen name="Pesquisa" component={SearchScreen} />      
+      <Tab.Screen name="Perfil" component={ProfileScreen} />
     </Tab.Navigator>
   );
 }

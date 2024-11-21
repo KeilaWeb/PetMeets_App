@@ -1,10 +1,10 @@
 import React from 'react';
-import { createCardsNavigator } from '@react-navigation/stack';
+import { createStackNavigator } from '@react-navigation/stack';
 
 import HomeScreen from '../screens/HomeScreen';
 import ClinicDetailsScreen from '../screens/ClinicDetailsScreen';
 
-const Stack = createCardsNavigator();
+const Stack = createStackNavigator();
 
 export default function CardsNavigator() {
   return (

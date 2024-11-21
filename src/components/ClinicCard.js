@@ -1,9 +1,15 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
-export default function ClinicCard({ name, logo, onPress  }) {
+export default function ClinicCard({ name, logo }) {
+  const navigation = useNavigation();
+
   return (
-    <TouchableOpacity style={styles.card} onPress={onPress}>
+    <TouchableOpacity
+      style={styles.card}
+      onPress={() => navigation.navigate('DetalhesClinica', { clinic: { name, logo } })}
+    >
       <View style={styles.logoContainer}>
         <Image source={{ uri: logo }} style={styles.logo} />
       </View>

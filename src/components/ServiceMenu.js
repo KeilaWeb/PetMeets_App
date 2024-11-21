@@ -1,9 +1,12 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 
-export default function ServiceMenu({ logo, name, address, onPress }) {
+export default function ServiceMenu({ logo, name, address }) {
   return (
-    <TouchableOpacity style={styles.card} onPress={onPress}>
+    <TouchableOpacity
+      style={styles.card}
+      onPress={() => navigation.navigate('DetalhesClinica', { clinic: { name, logo, address } })}
+    >
       <View style={styles.logoContainer}>
         <Image source={{ uri: logo }} style={styles.logo} />
       </View>
