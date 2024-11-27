@@ -1,7 +1,10 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 export default function ServiceMenu({ logo, name, address }) {
+  const navigation = useNavigation();
+  
   return (
     <TouchableOpacity
       style={styles.card}

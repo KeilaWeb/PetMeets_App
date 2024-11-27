@@ -82,7 +82,7 @@ export default function HomeScreen() {
                 key={clinic.id}
                 onPress={() => navigation.navigate('ClinicDetails', { clinic })}
               >
-                <ServiceMenu key={clinic.id} logo={clinic.logo} name={clinic.clinic} address={clinic.address} />
+                <ServiceMenu logo={clinic.logo} name={clinic.clinic} address={clinic.address} />
               </TouchableOpacity>
             ))}
           </ScrollView>
