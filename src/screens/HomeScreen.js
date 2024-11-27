@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, ScrollView, StyleSheet, TextInput, Image, ActivityIndicator } from 'react-native';
+import { View, Text, ScrollView, StyleSheet, TextInput, Image, ActivityIndicator, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+
 import Carousel from '../components/Carousel';
 import ClinicCard from '../components/ClinicCard';
 import ServiceMenu from '../components/ServiceMenu';
@@ -7,6 +9,7 @@ import { getClinics } from '../api/clinicService';
 import { carouselData } from '../api/carouselData';
 
 export default function HomeScreen() {
+  const navigation = useNavigation();
   const [clinics, setClinics] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -45,6 +48,7 @@ export default function HomeScreen() {
       {/* Carrossel */}
       <Carousel cards={carouselData} />
 
+      <ScrollView style={styles.container}>
       {/* Lista de Clínicas Próximas */}
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Mais próximos a você</Text>
@@ -53,11 +57,17 @@ export default function HomeScreen() {
         ) : (
           <ScrollView horizontal style={styles.scrollCard}>
             {clinics.map((clinic) => (
-              <ClinicCard key={clinic.id} name={clinic.clinic} logo={clinic.logo} />
+              <TouchableOpacity
+                key={clinic.id}
+                onPress={() => navigation.navigate('ClinicDetails', { clinic })}
+              >
+                <ClinicCard name={clinic.clinic} logo={clinic.logo} />
+              </TouchableOpacity>
             ))}
           </ScrollView>
         )}
       </View>
+    </ScrollView>
 
       {/* Lista Completa de Clínicas */}
       <View style={styles.section}>

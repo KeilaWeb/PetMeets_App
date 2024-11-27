@@ -8,7 +8,7 @@ export default function ClinicCard({ name, logo }) {
   return (
     <TouchableOpacity
       style={styles.card}
-      onPress={() => navigation.navigate('DetalhesClinica', { clinic: { name, logo } })}
+      onPress={() => navigation.navigate('ClinicDetails', { clinic: { name, logo } })}
     >
       <View style={styles.logoContainer}>
         <Image source={{ uri: logo }} style={styles.logo} />

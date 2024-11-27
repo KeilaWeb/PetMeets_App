@@ -5,7 +5,7 @@ export default function ServiceMenu({ logo, name, address }) {
   return (
     <TouchableOpacity
       style={styles.card}
-      onPress={() => navigation.navigate('DetalhesClinica', { clinic: { name, logo, address } })}
+      onPress={() => navigation.navigate('ClinicDetails', { clinic: { name, logo, address } })}
     >
       <View style={styles.logoContainer}>
         <Image source={{ uri: logo }} style={styles.logo} />
