@@ -48,38 +48,47 @@ export default function HomeScreen() {
       {/* Carrossel */}
       <Carousel cards={carouselData} />
 
-      <ScrollView style={styles.container}>
+      <ScrollView>
       {/* Lista de Clínicas Próximas */}
-      <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Mais próximos a você</Text>
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Mais próximos a você</Text>
+          {loading ? (
+            <ActivityIndicator size="large" color="#29374E" /> ) : 
+          (
+            <ScrollView horizontal style={styles.scrollCard}>
+              {clinics.map((clinic) => (
+                <TouchableOpacity
+                  key={clinic.id}
+                  onPress={() => navigation.navigate('ClinicDetails', { clinic })}
+                >
+                  <ClinicCard name={clinic.clinic} logo={clinic.logo} />
+                </TouchableOpacity>
+              ))}
+            </ScrollView>
+          )}
+        </View>
+      </ScrollView>
+
+      <ScrollView>
+        {/* Lista Completa de Clínicas */}
+        <View style={styles.section}>
+        <Text style={styles.sectionTitle}>Todos</Text>
         {loading ? (
-          <ActivityIndicator size="large" color="#29374E" />
-        ) : (
-          <ScrollView horizontal style={styles.scrollCard}>
+          <ActivityIndicator size="large" color="#29374E" /> ) : 
+        (
+          <ScrollView vertical>
             {clinics.map((clinic) => (
               <TouchableOpacity
                 key={clinic.id}
                 onPress={() => navigation.navigate('ClinicDetails', { clinic })}
               >
-                <ClinicCard name={clinic.clinic} logo={clinic.logo} />
+                <ServiceMenu key={clinic.id} logo={clinic.logo} name={clinic.clinic} address={clinic.address} />
               </TouchableOpacity>
             ))}
           </ScrollView>
-        )}
-      </View>
-    </ScrollView>
-
-      {/* Lista Completa de Clínicas */}
-      <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Todos</Text>
-        {loading ? (
-          <ActivityIndicator size="large" color="#29374E" />
-        ) : (
-          clinics.map((clinic) => (
-            <ServiceMenu key={clinic.id} logo={clinic.logo} name={clinic.clinic} address={clinic.address} />
-          ))
-        )}
-      </View>
+          )}
+        </View>
+      </ScrollView>
     </ScrollView>
   );
 }
