@@ -10,15 +10,9 @@ const Stack = createNativeStackNavigator();
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator
-        screenOptions={{
-          headerStyle: { backgroundColor: '#268596' },
-          headerTintColor: '#FFF',
-          headerTitleStyle: { fontWeight: 'bold' },
-        }}
-      >
+      <Stack.Navigator >
         <Stack.Screen name="Main" component={TabNavigator} options={{ headerShown: false }} />
-        <Stack.Screen name="ClinicDetails" component={ClinicDetailsScreen} options={{ title: 'Detalhes da Clínica' }} />
+        <Stack.Screen name="ClinicDetails" component={ClinicDetailsScreen} options={{ headerShown: false }} initialParams={{ clinicId: null }} />
       </Stack.Navigator>
     </NavigationContainer>
   );

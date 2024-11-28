@@ -38,10 +38,7 @@ export default function TabNavigator() {
           borderTopEndRadius: 30,
           borderTopLeftRadius: 30,
           elevation: 10,
-          shadowColor: '#29374E',
-          shadowOffset: { width: 0, height: 3 },
-          shadowOpacity: 0.4,
-          shadowRadius: 18,
+          boxShadow: "0px 5px 10px rgba(0, 0, 0, 0.1)",
         },
         tabBarLabelStyle: {
           fontSize: 11,
@@ -66,10 +63,7 @@ const styles = StyleSheet.create({
     borderTopEndRadius: 30,
     borderTopLeftRadius: 30,
     elevation: 10,
-    shadowColor: '#29374E',
-    shadowOffset: { width: 0, height: 3 },
-    shadowOpacity: 0.4,
-    shadowRadius: 18,
+    boxShadow: "0px 5px 10px rgba(0, 0, 0, 0.1)",
   },
   tabBarLabelStyle: {
     fontSize: 11,
