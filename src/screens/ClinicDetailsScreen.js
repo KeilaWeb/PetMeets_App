@@ -13,16 +13,23 @@ export default function ClinicDetails() {
   useEffect(() => {
     // Simula chamada à API para buscar dados da clínica
     const fetchClinicData = async () => {
-      const { clinics, doctors, doctorClinicRelations } = await import('../../backend/data'); 
-      const clinicData = clinics.find((c) => c.id === clinicId);
-      setClinic(clinicData);
+      try {
+        const { clinics, doctors, doctorClinicRelations } = await import('../../backend/data');
+        const clinicData = clinics.find((c) => c.id === clinicId);
+        if (!clinicData) throw new Error('Clínica não encontrada.');
 
-      const associatedDoctors = doctorClinicRelations
-        .filter((relation) => relation.clinicId === clinicId)
-        .map((relation) => doctors.find((d) => d.id === relation.doctorId));
-      setDoctors(associatedDoctors);
+        setClinic(clinicData);
+
+        const associatedDoctors = doctorClinicRelations
+          .filter((relation) => relation.clinicId === clinicId)
+          .map((relation) => doctors.find((d) => d.id === relation.doctorId))
+          .filter(Boolean); // Filtra valores nulos ou indefinidos
+
+        setDoctors(associatedDoctors);
+      } catch (error) {
+        console.error('Erro ao buscar dados da clínica:', error.message);
+      }
     };
-
     fetchClinicData();
   }, [clinicId]);
 
@@ -50,6 +57,7 @@ export default function ClinicDetails() {
             onSchedule={() => console.log(`Agendando com ${item.name}`)}
           />
         )}
+        ListEmptyComponent={<Text style={styles.emptyText}>Nenhum médico disponível.</Text>}
       />
     </View>
   );
@@ -85,5 +93,11 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: '#29374E',
     textAlign: 'center',
+  },
+  emptyText: {
+    textAlign: 'center',
+    color: '#29374E',
+    marginTop: 20,
+    fontSize: 16,
   },
 });
