@@ -4,20 +4,25 @@ import { useRoute } from '@react-navigation/native';
 
 import ServiceMenu from '../components/ServiceMenu';
 import DoctorCard from '../components/DoctorCard';
-import { getDoctors } from '../api/clinicService';
+import { getClinics, getDoctors } from '../api/clinicService';
 
 export default function ClinicDetails() {
   const route = useRoute();
   const { clinic } = route.params;
 
+  const [clinics, setClinics] = useState([]);
   const [doctors, setDoctors] = useState([]);  // Lista de médicos
   const [loading, setLoading] = useState(true); // Estado de carregamento
 
   useEffect(() => {
+    console.log('Clinica recebida:', clinic); 
     const fetchDoctors = async () => {
       try {
+        const clinicsData = await getClinics();
+        setClinics(clinicsData);
+
         // Carregar médicos associados à clínica
-        const doctorsData = await getDoctors(clinic.id);  // Passa o clinic.id
+        const doctorsData = await getDoctors();  // Passa o clinic.id
         console.log("Médicos retornados: ", doctorsData); 
         setDoctors(doctorsData);
       } catch (error) {
@@ -42,19 +47,20 @@ export default function ClinicDetails() {
     <ScrollView style={styles.container}>
       {/* Informações da Clínica */}
       <View style={styles.clinicInfo}>
-        <ServiceMenu
-          id={clinic.id}
+        <ServiceMenu id={clinic.id}
           logo={clinic.logo}
           name={clinic.name}
           address={clinic.address}
         />
-        <Text style={styles.description}>{clinic.description}</Text>
       </View>
+        <Text style={styles.description}>{clinic.about}</Text>
 
       {/* Lista de Médicos */}
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Médicos Disponíveis</Text>
-        {doctors.length > 0 ? (
+        {doctors.length === 0 ? (
+          <Text style={styles.noDoctors}>Nenhum médico encontrado para esta clínica</Text>
+        ) : (
           doctors.map((doctor) => (
             <DoctorCard
               key={doctor.id}
@@ -63,9 +69,7 @@ export default function ClinicDetails() {
               onSchedule={() => alert(`Agendamento com ${doctor.name}`)}
             />
           ))
-        ) : (
-          <Text>Nenhum médico encontrado para esta clínica</Text>
-        )}
+        )} 
       </View>
     </ScrollView>
   );

@@ -12,10 +12,19 @@ export const getClinics = async () => {
   }
 };
 
-// Função para buscar médicos de uma clínica específica
-export const getDoctors = async (clinicId) => {
+export const getDoctors = async () => {
   try {
-    const response = await axios.get(`${BASE_URL}/clinics/${clinicId}/doctors`); 
+    const response = await axios.get(`${BASE_URL}/doctors`); 
+    return response.data;
+  } catch (error) {
+    console.error('Erro ao buscar médicos:', error);
+    throw error;
+  }
+};
+
+export const getDoctorsClinic = async (clinicId) => {
+  try {
+    const response = await axios.get(`${BASE_URL}/${clinicId}/doctors`);
     return response.data;
   } catch (error) {
     console.error('Erro ao buscar médicos:', error);

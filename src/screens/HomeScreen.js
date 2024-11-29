@@ -78,10 +78,7 @@ export default function HomeScreen() {
         (
           <ScrollView vertical>
             {clinics.map((clinic) => (
-              <TouchableOpacity
-                key={clinic.id}
-                onPress={() => navigation.navigate('ClinicDetails', { clinic })}
-              >
+              <TouchableOpacity key={clinic.id} onPress={() => navigation.navigate('ClinicDetails', { clinic })} >
                 <ServiceMenu logo={clinic.logo} name={clinic.clinic} address={clinic.address} />
               </TouchableOpacity>
             ))}
