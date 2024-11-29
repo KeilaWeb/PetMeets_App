@@ -12,7 +12,7 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator >
         <Stack.Screen name="Main" component={TabNavigator} options={{ headerShown: false }} />
-        <Stack.Screen name="ClinicDetails" component={ClinicDetailsScreen} options={{ headerShown: false }} initialParams={{ clinicId: null }} />
+        <Stack.Screen name="ClinicDetails" component={ClinicDetailsScreen} options={{ headerShown: false }} />
       </Stack.Navigator>
     </NavigationContainer>
   );

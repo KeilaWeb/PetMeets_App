@@ -11,3 +11,13 @@ export const getClinics = async () => {
     throw error;
   }
 };
+
+export const getDoctors = async () => {
+  try {
+    const response = await axios.get(`${BASE_URL}/doctors`);
+    return response.data;
+  } catch (error) {
+    console.error('Erro ao buscar médicos:', error);
+    throw error;
+  }
+};

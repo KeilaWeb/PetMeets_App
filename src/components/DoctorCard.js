@@ -12,7 +12,7 @@ export default function DoctorCard({ doctorName, specialty, clinicLogo, onSchedu
         <Text style={styles.specialty}>{specialty}</Text>
       </View>
       <TouchableOpacity style={styles.scheduleButton} onPress={onSchedule}>
-        <Text style={styles.scheduleButtonText}>Agendar</Text>
+        <Text style={styles.scheduleButton}>Agendar</Text>
       </TouchableOpacity>
     </View>
   );
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     paddingVertical: 5,
   },
-  scheduleButtonText: {
+  scheduleButton: {
     color: '#FFF',
     fontWeight: 'bold',
     fontSize: 14,
