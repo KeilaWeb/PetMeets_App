@@ -6,7 +6,7 @@ const path = require('path');
 
 app.use(cors());
 app.use(express.json());
-app.use('/assets', express.static(path.join(__dirname, 'assets')));
+app.use('/assets', express.static(path.join(__dirname, '../assets')));
 
 // Rotas para Clínicas
 app.get('/clinics', (req, res) => res.json(clinics));

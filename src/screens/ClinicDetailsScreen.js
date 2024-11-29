@@ -1,103 +1,84 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, Image, FlatList } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, ActivityIndicator } from 'react-native';
 import { useRoute } from '@react-navigation/native';
+
+import ServiceMenu from '../components/ServiceMenu';
 import DoctorCard from '../components/DoctorCard';
+import { getClinicDetails, getDoctorsByClinic } from '../api/clinicService';
 
 export default function ClinicDetails() {
   const route = useRoute();
-  const { clinicId } = route.params;
+  const { clinic } = route.params;
 
-  const [clinic, setClinic] = useState(null);
+  const [clinicDetails, setClinicDetails] = useState(null);
   const [doctors, setDoctors] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Simula chamada à API para buscar dados da clínica
-    const fetchClinicData = async () => {
+    const fetchData = async () => {
       try {
-        const { clinics, doctors, doctorClinicRelations } = await import('../../backend/data');
-        const clinicData = clinics.find((c) => c.id === clinicId);
-        if (!clinicData) throw new Error('Clínica não encontrada.');
+        // Carregar detalhes da clínica
+        const details = await getClinicDetails(clinic.id);
+        setClinicDetails(details);
 
-        setClinic(clinicData);
-
-        const associatedDoctors = doctorClinicRelations
-          .filter((relation) => relation.clinicId === clinicId)
-          .map((relation) => doctors.find((d) => d.id === relation.doctorId))
-          .filter(Boolean); // Filtra valores nulos ou indefinidos
-
-        setDoctors(associatedDoctors);
+        // Carregar médicos associados à clínica
+        const doctorsData = await getDoctorsByClinic(clinic.id);
+        setDoctors(doctorsData);
       } catch (error) {
-        console.error('Erro ao buscar dados da clínica:', error.message);
+        console.error('Erro ao carregar os dados da clínica:', error);
+      } finally {
+        setLoading(false);
       }
     };
-    fetchClinicData();
-  }, [clinicId]);
 
-  if (!clinic) return <Text>Carregando...</Text>;
+    fetchData();
+  }, [clinic]);
+
+  if (loading) {
+    return (
+      <View style={styles.loaderContainer}>
+        <ActivityIndicator size="large" color="#29374E" />
+      </View>
+    );
+  }
 
   return (
-    <View style={styles.container}>
-      {/* Dados da clínica */}
-      <View style={styles.clinicHeader}>
-        <Image source={{ uri: clinic.logo }} style={styles.clinicLogo} />
-        <Text style={styles.clinicName}>{clinic.clinic}</Text>
-        <Text style={styles.clinicAddress}>{clinic.address}</Text>
-        <Text style={styles.clinicAbout}>{clinic.about}</Text>
-      </View>
-
-      {/* Lista de médicos */}
-      <FlatList
-        data={doctors}
-        keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) => (
-          <DoctorCard
-            doctorName={item.name}
-            specialty={item.specialty.join(', ')}
-            clinicLogo={clinic.logo}
-            onSchedule={() => console.log(`Agendando com ${item.name}`)}
+    <ScrollView style={styles.container}>
+      {/* Informações da Clínica */}
+      {clinicDetails && (
+        <View style={styles.clinicInfo}>
+          <ServiceMenu
+            id={clinicDetails.id}
+            logo={clinicDetails.logo}
+            name={clinicDetails.name}
+            address={clinicDetails.address}
           />
-        )}
-        ListEmptyComponent={<Text style={styles.emptyText}>Nenhum médico disponível.</Text>}
-      />
-    </View>
+          <Text style={styles.description}>{clinicDetails.description}</Text>
+        </View>
+      )}
+
+      {/* Lista de Médicos */}
+      <View style={styles.section}>
+        <Text style={styles.sectionTitle}>Médicos Disponíveis</Text>
+        {doctors.map((doctor) => (
+          <DoctorCard
+            key={doctor.id}
+            doctorName={doctor.name}
+            specialty={doctor.specialty}
+            clinicLogo={clinicDetails.logo}
+            onSchedule={() => alert(`Agendamento com ${doctor.name}`)}
+          />
+        ))}
+      </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 10,
-    backgroundColor: '#FFF',
-  },
-  clinicHeader: {
-    marginBottom: 20,
-    alignItems: 'center',
-  },
-  clinicLogo: {
-    width: 80,
-    height: 80,
-    borderRadius: 40,
-    marginBottom: 10,
-  },
-  clinicName: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#29374E',
-  },
-  clinicAddress: {
-    fontSize: 14,
-    color: '#29374E',
-    marginBottom: 10,
-  },
-  clinicAbout: {
-    fontSize: 12,
-    color: '#29374E',
-    textAlign: 'center',
-  },
-  emptyText: {
-    textAlign: 'center',
-    color: '#29374E',
-    marginTop: 20,
-    fontSize: 16,
-  },
+  container: { flex: 1, padding: 18, backgroundColor: '#ffffff' },
+  loaderContainer: { flex: 1, justifyContent: 'center', alignItems: 'center' },
+  clinicInfo: { marginBottom: 20 },
+  description: { fontSize: 14, color: '#29374E', marginTop: 10 },
+  section: { marginTop: 20 },
+  sectionTitle: { fontSize: 18, fontWeight: 'bold', marginBottom: 10, color: '#29374E' },
 });
