@@ -57,6 +57,10 @@ const styles = StyleSheet.create({
   },
   scheduleButton: {
     color: '#FFF',
+    backgroundColor: '#268596',
+    paddingHorizontal: 10,
+    paddingVertical: 4,
+    borderRadius: 20,
     fontWeight: 'bold',
     fontSize: 14,
   },

@@ -4,7 +4,7 @@ import { useRoute } from '@react-navigation/native';
 
 import ServiceMenu from '../components/ServiceMenu';
 import DoctorCard from '../components/DoctorCard';
-import { getClinicDetails, getDoctorsByClinic } from '../api/clinicService';
+import { getClinics, getDoctors } from '../api/clinicService';
 
 export default function ClinicDetails() {
   const route = useRoute();
@@ -18,11 +18,11 @@ export default function ClinicDetails() {
     const fetchData = async () => {
       try {
         // Carregar detalhes da clínica
-        const details = await getClinicDetails(clinic.id);
+        const details = await getClinics(clinic.id);
         setClinicDetails(details);
 
         // Carregar médicos associados à clínica
-        const doctorsData = await getDoctorsByClinic(clinic.id);
+        const doctorsData = await getDoctors(clinic.id);
         setDoctors(doctorsData);
       } catch (error) {
         console.error('Erro ao carregar os dados da clínica:', error);
