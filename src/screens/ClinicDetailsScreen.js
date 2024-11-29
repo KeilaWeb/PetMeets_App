@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, ScrollView, ActivityIndicator } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, ActivityIndicator, Image } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 
-import ServiceMenu from '../components/ServiceMenu';
-import DoctorCard from '../components/DoctorCard';
 import { getClinics, getDoctors } from '../api/clinicService';
 
 export default function ClinicDetails() {
@@ -22,7 +20,7 @@ export default function ClinicDetails() {
         setClinicDetails(details);
 
         // Carregar médicos associados à clínica
-        const doctorsData = await getDoctors(clinic.id);
+        const doctorsData = await getDoctors(clinic.id); // Certifique-se de que a API retorna os médicos corretos
         setDoctors(doctorsData);
       } catch (error) {
         console.error('Erro ao carregar os dados da clínica:', error);
@@ -46,28 +44,32 @@ export default function ClinicDetails() {
     <ScrollView style={styles.container}>
       {/* Informações da Clínica */}
       {clinicDetails && (
-        <View style={styles.clinicInfo}>
-          <ServiceMenu
-            id={clinicDetails.id}
-            logo={clinicDetails.logo}
-            name={clinicDetails.name}
-            address={clinicDetails.address}
+        <View style={styles.clinicHeader}>
+          <Image
+            source={{ uri: clinicDetails.logo }}
+            style={styles.clinicLogo}
+            resizeMode="contain"
           />
-          <Text style={styles.description}>{clinicDetails.description}</Text>
+          <View>
+            <Text style={styles.clinicName}>{clinicDetails.name}</Text>
+            <Text style={styles.clinicAddress}>{clinicDetails.address}</Text>
+          </View>
         </View>
+      )}
+
+      {/* Descrição da Clínica */}
+      {clinicDetails && (
+        <Text style={styles.description}>{clinicDetails.description}</Text>
       )}
 
       {/* Lista de Médicos */}
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Médicos Disponíveis</Text>
         {doctors.map((doctor) => (
-          <DoctorCard
-            key={doctor.id}
-            doctorName={doctor.name}
-            specialty={doctor.specialty}
-            clinicLogo={clinicDetails.logo}
-            onSchedule={() => alert(`Agendamento com ${doctor.name}`)}
-          />
+          <View key={doctor.id} style={styles.doctorCard}>
+            <Text style={styles.doctorName}>{doctor.name}</Text>
+            <Text style={styles.doctorSpecialty}>{doctor.specialty}</Text>
+          </View>
         ))}
       </View>
     </ScrollView>
@@ -77,8 +79,14 @@ export default function ClinicDetails() {
 const styles = StyleSheet.create({
   container: { flex: 1, padding: 18, backgroundColor: '#ffffff' },
   loaderContainer: { flex: 1, justifyContent: 'center', alignItems: 'center' },
-  clinicInfo: { marginBottom: 20 },
-  description: { fontSize: 14, color: '#29374E', marginTop: 10 },
+  clinicHeader: { flexDirection: 'row', alignItems: 'center', marginBottom: 20 },
+  clinicLogo: { width: 60, height: 60, marginRight: 15, borderRadius: 8 },
+  clinicName: { fontSize: 18, fontWeight: 'bold', color: '#29374E' },
+  clinicAddress: { fontSize: 14, color: '#7A869A' },
+  description: { fontSize: 14, color: '#29374E', marginBottom: 20 },
   section: { marginTop: 20 },
   sectionTitle: { fontSize: 18, fontWeight: 'bold', marginBottom: 10, color: '#29374E' },
+  doctorCard: { padding: 10, borderBottomWidth: 1, borderBottomColor: '#E0E0E0' },
+  doctorName: { fontSize: 16, fontWeight: 'bold', color: '#29374E' },
+  doctorSpecialty: { fontSize: 14, color: '#7A869A' },
 });
