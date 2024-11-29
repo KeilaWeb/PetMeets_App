@@ -4,35 +4,31 @@ import { useRoute } from '@react-navigation/native';
 
 import ServiceMenu from '../components/ServiceMenu';
 import DoctorCard from '../components/DoctorCard';
-import { getClinics, getDoctors } from '../api/clinicService';
+import { getDoctors } from '../api/clinicService';
 
 export default function ClinicDetails() {
   const route = useRoute();
   const { clinic } = route.params;
 
-  const [clinicDetails, setClinicDetails] = useState(null);
-  const [doctors, setDoctors] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [doctors, setDoctors] = useState([]);  // Lista de médicos
+  const [loading, setLoading] = useState(true); // Estado de carregamento
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchDoctors = async () => {
       try {
-        // Carregar detalhes da clínica
-        const details = await getClinics(clinic.id);
-        setClinicDetails(details);
-
         // Carregar médicos associados à clínica
-        const doctorsData = await getDoctors(clinic.id);
+        const doctorsData = await getDoctors(clinic.id);  // Passa o clinic.id
+        console.log("Médicos retornados: ", doctorsData); 
         setDoctors(doctorsData);
       } catch (error) {
-        console.error('Erro ao carregar os dados da clínica:', error);
+        console.error('Erro ao carregar médicos da clínica:', error);
       } finally {
         setLoading(false);
       }
     };
 
-    fetchData();
-  }, [clinic]);
+    fetchDoctors();
+  }, [clinic.id]);  // Recarrega sempre que a clínica mudar
 
   if (loading) {
     return (
@@ -45,30 +41,31 @@ export default function ClinicDetails() {
   return (
     <ScrollView style={styles.container}>
       {/* Informações da Clínica */}
-      {clinicDetails && (
-        <View style={styles.clinicInfo}>
-          <ServiceMenu
-            id={clinicDetails.id}
-            logo={clinicDetails.logo}
-            name={clinicDetails.name}
-            address={clinicDetails.address}
-          />
-          <Text style={styles.description}>{clinicDetails.description}</Text>
-        </View>
-      )}
+      <View style={styles.clinicInfo}>
+        <ServiceMenu
+          id={clinic.id}
+          logo={clinic.logo}
+          name={clinic.name}
+          address={clinic.address}
+        />
+        <Text style={styles.description}>{clinic.description}</Text>
+      </View>
 
       {/* Lista de Médicos */}
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Médicos Disponíveis</Text>
-        {doctors.map((doctor) => (
-          <DoctorCard
-            key={doctor.id}
-            doctorName={doctor.name}
-            specialty={doctor.specialty}
-            clinicLogo={clinicDetails.logo}
-            onSchedule={() => alert(`Agendamento com ${doctor.name}`)}
-          />
-        ))}
+        {doctors.length > 0 ? (
+          doctors.map((doctor) => (
+            <DoctorCard
+              key={doctor.id}
+              doctorName={doctor.name}
+              specialty={doctor.specialty}
+              onSchedule={() => alert(`Agendamento com ${doctor.name}`)}
+            />
+          ))
+        ) : (
+          <Text>Nenhum médico encontrado para esta clínica</Text>
+        )}
       </View>
     </ScrollView>
   );

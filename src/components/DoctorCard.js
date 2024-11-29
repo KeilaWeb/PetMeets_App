@@ -1,12 +1,9 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 
-export default function DoctorCard({ doctorName, specialty, clinicLogo, onSchedule }) {
+export default function DoctorCard({ doctorName, specialty, onSchedule }) {
   return (
     <View style={styles.card}>
-      <View style={styles.logoContainer}>
-        <Image source={{ uri: clinicLogo }} style={styles.logo} />
-      </View>
       <View style={styles.infoContainer}>
         <Text style={styles.doctorName}>{doctorName}</Text>
         <Text style={styles.specialty}>{specialty}</Text>
@@ -25,17 +22,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#F6F6F6',
     marginVertical: 6,
     padding: 10,
-    borderRadius: 20,
-  },
-  logoContainer: {
-    width: 60,
-    height: 60,
-    marginRight: 10,
-  },
-  logo: {
-    width: 60,
-    height: 60,
-    borderRadius: 30,
+    borderRadius: 10,
   },
   infoContainer: {
     flex: 1,
