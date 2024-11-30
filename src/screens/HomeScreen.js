@@ -17,6 +17,7 @@ export default function HomeScreen() {
     const fetchClinics = async () => {
       try {
         const clinicsData = await getClinics();
+        console.log('Dados recebidos:', clinicsData)
         setClinics(clinicsData);
       } catch (error) {
         console.error('Erro ao carregar clínicas:', error);
@@ -51,21 +52,22 @@ export default function HomeScreen() {
       <ScrollView>
       {/* Lista de Clínicas Próximas */}
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Mais próximos a você</Text>
-          {loading ? (
-            <ActivityIndicator size="large" color="#29374E" /> ) : 
-          (
-            <ScrollView horizontal style={styles.scrollCard}>
-              {clinics.map((clinic) => (
-                <TouchableOpacity
-                  key={clinic.id}
-                  onPress={() => navigation.navigate('ClinicDetails', { clinic })}
-                >
-                  <ClinicCard name={clinic.clinic} logo={clinic.logo} />
-                </TouchableOpacity>
-              ))}
-            </ScrollView>
-          )}
+        {loading ? (
+          <ActivityIndicator size="large" color="#29374E" />
+        ) : clinics.length > 0 ? (
+          <ScrollView horizontal>
+            {clinics.map((clinic) => (
+              <TouchableOpacity
+                key={clinic.id}
+                onPress={() => navigation.navigate('ClinicDetails', { clinic })}
+              >
+                <ClinicCard name={clinic.name} logo={clinic.logo} />
+              </TouchableOpacity>
+            ))}
+          </ScrollView>
+        ) : (
+          <Text style={styles.emptyMessage}>Nenhuma clínica encontrada.</Text>
+        )}
         </View>
       </ScrollView>
 
@@ -79,7 +81,7 @@ export default function HomeScreen() {
           <ScrollView vertical>
             {clinics.map((clinic) => (
               <TouchableOpacity key={clinic.id} onPress={() => navigation.navigate('ClinicDetails', { clinic })} >
-                <ServiceMenu logo={clinic.logo} name={clinic.clinic} address={clinic.address} />
+                <ServiceMenu logo={clinic.logo} name={clinic.name} address={clinic.address} />
               </TouchableOpacity>
             ))}
           </ScrollView>

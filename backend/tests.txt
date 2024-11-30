@@ -1,0 +1,31 @@
+/auth/register
+post
+{
+  "name": "John Doe",
+  "username": "johndoe",
+  "password": "password123"
+}
+
+/auth/login
+post
+{
+  "username": "johndoe",
+  "password": "password123"
+}
+
+/clinics
+post
+{
+  "name": "Clínica Central",
+  "address": "Rua Principal, 123"
+}
+
+/doctor-clinic
+post
+{
+  "doctorId": 1,
+  "clinicId": 1
+}
+
+/health
+get

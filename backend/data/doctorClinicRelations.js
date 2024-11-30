@@ -1,0 +1,27 @@
+const doctorClinicRelations = [
+  { doctorId: 1, clinicId: 1 },
+  { doctorId: 1, clinicId: 2 },
+  { doctorId: 1, clinicId: 3 },
+  { doctorId: 1, clinicId: 4 },
+  { doctorId: 1, clinicId: 5 },
+  { doctorId: 13, clinicId: 2 },
+  { doctorId: 13, clinicId: 3 },
+  { doctorId: 13, clinicId: 7 },
+  { doctorId: 2, clinicId: 1 },
+  { doctorId: 2, clinicId: 5 },
+  { doctorId: 3, clinicId: 4 },
+  { doctorId: 3, clinicId: 6 },
+  { doctorId: 4, clinicId: 5 },
+  { doctorId: 4, clinicId: 7 },
+  { doctorId: 5, clinicId: 8 },
+  { doctorId: 6, clinicId: 6 },
+  { doctorId: 7, clinicId: 7 },
+  { doctorId: 8, clinicId: 2 },
+  { doctorId: 9, clinicId: 8 },
+  { doctorId: 10, clinicId: 3 },
+  { doctorId: 11, clinicId: 4 },
+  { doctorId: 12, clinicId: 6 },
+  { doctorId: 14, clinicId: 1 },
+];
+
+module.exports = doctorClinicRelations;
