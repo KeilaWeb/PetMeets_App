@@ -18,7 +18,7 @@ export default function App() {
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Register" component={RegisterScreen} />
         <Stack.Screen name="Home" component={TabNavigator} options={{ headerShown: false }} />
-        <Stack.Screen name="ClinicDetails" component={ClinicDetailsScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="ClinicDetails" component={ClinicDetailsScreen} options={{ headerShown: true, tabBarVisible: true, }} />
       </Stack.Navigator>
     </NavigationContainer>
   );
