@@ -2,6 +2,7 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
+import { FontAwesome } from '@expo/vector-icons'; // Importa FontAwesome para hospital e doctor
 
 import HomeScreen from '../screens/HomeScreen';
 import ScheduleScreen from '../screens/ScheduleScreen';
@@ -15,16 +16,25 @@ export default function TabNavigator() {
     <Tab.Navigator
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
-          let iconName;
-          if (route.name === 'Home') iconName = 'home';
-          else if (route.name === 'Agendamento') iconName = 'today';
-          else if (route.name === 'Pesquisa') iconName = 'search';
-          else if (route.name === 'Perfil') iconName = 'person';
+          let iconComponent;
+
+          if (route.name === 'Home') {
+            iconComponent = <Ionicons name="home" size={size} color={color} />;
+          } else if (route.name === 'Clinicas') {
+            iconComponent = (
+              <FontAwesome name="hospital-o" size={size} color={color} />
+            ); // Ícone de hospital
+          } else if (route.name === 'Medicos') {
+            iconComponent = (
+              <FontAwesome name="user-md" size={size} color={color} />
+            ); // Ícone de médico
+          } else if (route.name === 'Perfil') {
+            iconComponent = <Ionicons name="person" size={size} color={color} />;
+          }
 
           return (
-            <View
-              style={[ styles.iconContainer, focused && styles.activeContainer, ]} >
-              <Ionicons name={iconName} size={size} color={color} />
+            <View style={[styles.iconContainer, focused && styles.activeContainer]}>
+              {iconComponent}
             </View>
           );
         },
@@ -38,7 +48,7 @@ export default function TabNavigator() {
           borderTopEndRadius: 30,
           borderTopLeftRadius: 30,
           elevation: 10,
-          boxShadow: "0px 5px 10px rgba(0, 0, 0, 0.1)",
+          boxShadow: '0px 5px 10px rgba(0, 0, 0, 0.1)',
         },
         tabBarLabelStyle: {
           fontSize: 11,
@@ -48,28 +58,14 @@ export default function TabNavigator() {
       })}
     >
       <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Agendamento" component={ScheduleScreen} />
-      <Tab.Screen name="Pesquisa" component={SearchScreen} />
+      <Tab.Screen name="Clinicas" component={ScheduleScreen} />
+      <Tab.Screen name="Medicos" component={SearchScreen} />
       <Tab.Screen name="Perfil" component={LoginScreen} />
     </Tab.Navigator>
   );
 }
 
 const styles = StyleSheet.create({
-  tabBarStyle: {
-    backgroundColor: '#F6F6F6',
-    position: 'absolute',
-    height: 70,
-    borderTopEndRadius: 30,
-    borderTopLeftRadius: 30,
-    elevation: 10,
-    boxShadow: "0px 5px 10px rgba(0, 0, 0, 0.1)",
-  },
-  tabBarLabelStyle: {
-    fontSize: 11,
-    fontWeight: '500',
-    paddingHorizontal: 10,
-  },
   iconContainer: {
     justifyContent: 'center',
     alignItems: 'center',
@@ -82,6 +78,6 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderTopLeftRadius: 40,
     borderTopEndRadius: 40,
-    paddingBottom: 20,
+    paddingBottom: 25,
   },
 });

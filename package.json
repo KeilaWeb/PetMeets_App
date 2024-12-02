@@ -15,6 +15,7 @@
     "@react-navigation/bottom-tabs": "^7.0.0",
     "@react-navigation/native": "^7.0.0",
     "@react-navigation/native-stack": "^7.0.0",
+    "@tabler/icons-react": "^3.23.0",
     "axios": "^1.7.7",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
@@ -32,6 +33,7 @@
     "react-native": "^0.76.3",
     "react-native-svg": "^15.8.0",
     "react-native-svg-transformer": "^1.5.0",
+    "react-native-vector-icons": "^10.2.0",
     "react-native-web": "^0.19.13",
     "util": "^0.12.5"
   },
