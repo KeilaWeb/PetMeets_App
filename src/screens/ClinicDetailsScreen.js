@@ -11,19 +11,19 @@ export default function ClinicDetails() {
   const { clinic } = route.params;
 
   const [clinics, setClinics] = useState([]);
-  const [doctors, setDoctors] = useState([]);  // Lista de médicos
-  const [loading, setLoading] = useState(true); // Estado de carregamento
+  const [doctors, setDoctors] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    console.log('Clinica recebida:', clinic); 
+    console.log('Clinica recebida:', clinic);
     const fetchDoctors = async () => {
       try {
         const clinicsData = await getClinics();
         setClinics(clinicsData);
 
         // Carregar médicos associados à clínica
-        const doctorsData = await getDoctors();  // Passa o clinic.id
-        console.log("Médicos retornados: ", doctorsData); 
+        const doctorsData = await getDoctors(clinic.id);  // Passa o clinic.id
+        console.log("Médicos retornados: ", doctorsData);
         setDoctors(doctorsData);
       } catch (error) {
         console.error('Erro ao carregar médicos da clínica:', error);
@@ -69,7 +69,7 @@ export default function ClinicDetails() {
               onSchedule={() => alert(`Agendamento com ${doctor.name}`)}
             />
           ))
-        )} 
+        )}
       </View>
     </ScrollView>
   );
