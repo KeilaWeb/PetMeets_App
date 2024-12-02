@@ -31,6 +31,7 @@ const styles = StyleSheet.create({
     marginRight: 10,
     overflow: 'hidden',
     maxWidth: 140,
+    background: '#29374E'
   },
   logoContainer: {
     width: 80,
