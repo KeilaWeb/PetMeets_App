@@ -35,8 +35,7 @@ export default function ClinicDetails() {
     };
   
     fetchDoctors();
-  }, [clinic.id]);
-  
+  }, [clinic.id]);  
 
   if (loading) {
     return (
