@@ -26,21 +26,27 @@ router.post('/', (req, res) => {
 router.get('/clinics/:id/doctors', (req, res) => {
   const clinicId = parseInt(req.params.id, 10);
 
-  // Filtrar IDs dos médicos relacionados à clínica
   const doctorIds = doctorClinicRelations
-    .filter((dcr) => dcr.clinicId === clinicId)
-    .map((dcr) => dcr.doctorId);
+    .filter((relation) => relation.clinicId === clinicId)
+    .map((relation) => relation.doctorId);
 
-  // Buscar os médicos correspondentes
-  const doctorsList = doctors.filter((d) => doctorIds.includes(d.id));
+  const doctorsList = doctors
+    .filter((doctor) => doctorIds.includes(doctor.id))
+    .map((doctor) => ({
+      ...doctor,
+      specialties: doctor.specialties.map((id) => {
+        const specialty = specialties.find((s) => s.id === id);
+        return specialty ? specialty.name : "Especialidade desconhecida";
+      }),
+    }));
 
-  // Verificar se há médicos relacionados
   if (doctorsList.length === 0) {
     return res.status(404).json({ message: 'Nenhum médico encontrado para esta clínica' });
   }
 
   res.json(doctorsList);
 });
+
 
 // Listar Clínicas de um Médico
 router.get('/doctors/:id/clinics', (req, res) => {

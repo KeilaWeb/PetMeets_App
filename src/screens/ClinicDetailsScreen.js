@@ -16,24 +16,27 @@ export default function ClinicDetails() {
 
   useEffect(() => {
     console.log('Clinica recebida:', clinic);
+    let isFirstLoad = true;
+  
     const fetchDoctors = async () => {
       try {
-        const clinicsData = await getClinics();
-        setClinics(clinicsData);
-
-        // Carregar médicos associados à clínica
-        const doctorsData = await getDoctors(clinic.id);  // Passa o clinic.id
+        if (isFirstLoad) setLoading(true);
+        const doctorsData = await getDoctors(clinic.id);
         console.log("Médicos retornados: ", doctorsData);
         setDoctors(doctorsData);
       } catch (error) {
         console.error('Erro ao carregar médicos da clínica:', error);
       } finally {
-        setLoading(false);
+        if (isFirstLoad) {
+          setLoading(false);
+          isFirstLoad = false;
+        }
       }
     };
-
+  
     fetchDoctors();
-  }, [clinic.id]);  // Recarrega sempre que a clínica mudar
+  }, [clinic.id]);
+  
 
   if (loading) {
     return (
@@ -65,7 +68,7 @@ export default function ClinicDetails() {
             <DoctorCard
               key={doctor.id}
               doctorName={doctor.name}
-              specialty={doctor.specialty}
+              specialty={doctor.specialties.join(', ')}
               onSchedule={() => alert(`Agendamento com ${doctor.name}`)}
             />
           ))
