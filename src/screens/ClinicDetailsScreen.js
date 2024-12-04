@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, ActivityIndicator } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 
-import ServiceMenu from '../components/ServiceMenu';
+import ServiceClinic from '../components/ServiceClinic';
 import DoctorCard from '../components/DoctorCard';
 import { getClinics, getDoctors } from '../api/clinicService';
 
@@ -15,15 +15,19 @@ export default function ClinicDetails() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    console.log('Clinica recebida:', clinic);
     let isFirstLoad = true;
   
     const fetchDoctors = async () => {
       try {
         if (isFirstLoad) setLoading(true);
+        const clinicDAta = await getClinics(clinic);
+        console.log("Clinica: ", clinicDAta)
+        setClinics(clinicDAta);
+
         const doctorsData = await getDoctors(clinic.id);
         console.log("Médicos retornados: ", doctorsData);
         setDoctors(doctorsData);
+
       } catch (error) {
         console.error('Erro ao carregar médicos da clínica:', error);
       } finally {
@@ -49,11 +53,7 @@ export default function ClinicDetails() {
     <ScrollView style={styles.container}>
       {/* Informações da Clínica */}
       <View style={styles.clinicInfo}>
-        <ServiceMenu id={clinic.id}
-          logo={clinic.logo}
-          name={clinic.name}
-          address={clinic.address}
-        />
+        <ServiceClinic key={clinic.id} logo={clinic.logo} name={clinic.name} address={clinic.address} phone={clinic.phone} />
       </View>
         <Text style={styles.description}>{clinic.about}</Text>
 

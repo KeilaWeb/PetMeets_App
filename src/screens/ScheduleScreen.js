@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, ScrollView, TextInput, StyleSheet, ActivityIndicator } from 'react-native';
-import ServiceMenu from '../components/ServiceMenu';
+import ServiceClinic from '../components/ServiceClinic';
 import { getClinics } from '../api/clinicService';
 
 export default function ScheduleScreen() {
@@ -30,7 +30,7 @@ export default function ScheduleScreen() {
             <ActivityIndicator size="large" color="#29374E" />
             ) : (
               clinics.map((clinic) => (
-                <ServiceMenu key={clinic.id} logo={clinic.logo} name={clinic.clinic} address={clinic.address} />
+                <ServiceClinic key={clinic.id} logo={clinic.logo} name={clinic.name} address={clinic.address} phone={clinic.phone} />
               ))
             )}
         </View>
